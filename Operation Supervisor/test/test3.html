@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,html{
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+			}
+			#box{
+				border: 1px solid #000;
+				width: 600px;
+				height: 600px;
+				margin: 50px auto;
+			}
+			#box div{
+				width: 20px;
+				height: 20px;
+				background: url(img/second_words.png) no-repeat;
+				background-size: 600px 600px;
+				float: left;
+				transform-origin: 600px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script src="js/TweenMax.min.js"></script>
+		<script>
+		    var box = document.getElementById("box");
+		    var str = "";
+		    var row = 30;
+		    var col = 30;
+		    for (var i = 0; i < row; i++) {
+		    	for (var j = 0; j < col; j++) {
+		    		str += "<div style='background-position:"+(-j*20)+"px "+(-i*20)+"px;'></div>";
+		    	}
+		    }
+		    box.innerHTML = str;
+		    var divs = document.querySelectorAll("#box div ");
+			tl = new TimelineMax();
+			tl.staggerFrom(divs, 2, {
+		 		rotation:-540,
+		 		x:-600
+//		 		transformOrigin:"center center"
+//		 		cycle:{
+//		 			rotation:[-360,360]
+//					scale:20*Math.random()
+//		 		}
+//		 		transformOrigin:-100
+		 	},0.1);
+		</script>
+	</body>
+</html>

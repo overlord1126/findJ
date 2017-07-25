@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			(function () {
+				var html = document.documentElement;
+				var width = html.getBoundingClientRect().width;
+				var fs = width/16;
+				html.style.fontSize = fs+"px";
+			})()
+		</script>
+		<style>	
+			div{
+				transform-style: preserve-3d;
+				perspective: 300px;
+				width:1rem;
+				height:1rem;
+				background-color:red;
+				/*transform: translateX(0rem) translateY(20rem) rotateY(0);*/
+				animation: go 3s infinite linear;
+			}
+			@keyframes go{
+				0%{
+					transform: translateX(-2rem) translateY(30rem) rotateY(0);
+				}
+				25%{
+					transform: translateX(0.8rem) translateY(22.5rem) rotateY(45deg);
+				}
+				50%{
+					transform: translateX(2rem) translateY(15rem) rotateY(0);
+				}
+				
+				75%{
+					transform: translateX(-0.8rem) translateY(7.5rem) rotateY(-45deg);
+				}
+				100%{
+					transform: translateX(-2rem) translateY(-1rem) rotateY(0);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>

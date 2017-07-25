@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box{
+				width: 600px;
+				height: 600px;
+				border: 1px solid #000;
+				padding: 200px 0 0 200px;
+			}
+			.box div{
+				margin: 1px;
+				width: 10px;
+				height: 10px;
+				background-color: #f00;
+				transform-origin: 200px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<script src="js/TweenMax.min.js"></script>
+		<script>
+			var divs = document.querySelectorAll(".box div ");
+			tl = new TimelineMax();
+			tl.staggerFrom(divs, 3, {
+		 		x:-100,
+		 		rotation:360,
+		 		
+		 		cycle:{
+//		 			rotation:[-360,360]
+					scale:20*Math.random()
+		 		},
+//		 		transformOrigin:-100
+		 	}, .01);
+		</script>
+	</body>
+</html>

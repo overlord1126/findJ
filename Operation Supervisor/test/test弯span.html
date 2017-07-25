@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			span{
+				display: inline-block;
+				margin-top: 10px;
+			}
+			div{
+				width: 400px;
+				border: 1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+			<span>去</span>
+		</div>
+		<script src="js/TweenMax.min.js"></script>
+		<script>
+		    var span = document.getElementsByTagName("span");
+		    var t = new TimelineMax();
+		    t.staggerFrom( span,1,{
+		    	cycle:{
+		    		y:function(index){
+		    			return -(100-(8-index)*(8-index));
+		    		}
+		    	},
+		    	x:-100,
+		    	scale:0
+//		    	y:-100
+		    },.01 )
+
+//			t.staggerFrom( span,0.5,{
+//				x:100
+//			},0.01 )
+		</script>
+	</body>
+	
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width:50px;
+				height:50px;
+				background-color:red;
+				position: absolute;
+				top: 600px;
+				left: 100px;
+				/*animation: upLoop 3s linear;*/
+			}
+			@keyframes upLoop{
+				from{top:600px}
+				to{top:0px}
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script src="js/TweenMax.min.js"></script>
+		<script>
+			var divs = document.querySelectorAll("div");
+		    var t = new TimelineMax();
+		    var t1 = new TimelineMax();
+		    t.set("div",{transformPerspective:200})
+		    t.staggerTo("div",4,{
+		    	cycle:{
+		    		bezier:function(){
+		    			return [
+				    		{x:-50*Math.random(),rotationY:-10*Math.random()},
+				    		{x:0,rotationY:0},
+				    		{x:50*Math.random(),rotationY:10*Math.random()},
+				    		{x:0,rotationY:0},
+				    		{x:-50*Math.random(),rotationY:-10*Math.random()},
+				    		{x:0,rotationY:0},
+				    		{x:50*Math.random(),rotationY:10*Math.random()}
+				    	] 
+		    		}
+		    	},
+		    	y:-600,
+		    	ease:Sine.easeIn
+		    },.5)
+		</script> 
+	</body>
+</html>

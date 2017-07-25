@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{
+				position: absolute;
+				width: 500px;
+				height: 800px;
+				/*clip: rect(0 100px 200px 0);*/
+				animation: go 1s;
+			}
+			@keyframes go{
+				from{
+					clip: rect(400px 0 400px 0);
+				}
+				to{
+					clip: rect(0 500px 800px 0);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<img src="img/bg2.png"/>
+		
+	</body>
+</html>

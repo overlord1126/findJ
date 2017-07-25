@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width:50px;
+				height:50px;
+				background-color:red;
+				float: left;
+				margin-right: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script src="js/TweenMax.min.js"></script>
+		<script>
+		    var t = new TimelineMax();
+//		    t.set("div",{width:100})
+
+//			t.set("div",function(index){
+//				if(index == 0){
+////					return { width:100 }
+//					console.log( 1 );
+//				}
+//				if(index == 1){
+////					return { height:100 }
+//				}
+//				if(index == 2){
+////					return { background:"green" }
+//				} 
+//			})
+			
+			t.staggerFrom( "div",1,{
+				cycle:{
+					x:function(index){
+						if(index == 0){
+							return -100
+						}
+					},
+					y:function(index){
+						if(index == 1){
+							return 100
+						}
+					}
+				}
+			},.1)
+		</script>
+	</body>
+</html>

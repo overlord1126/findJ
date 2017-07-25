@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:150px;
+				border: 1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">你好，hello，world你好，hello，world你好，hello，world你好，hello，world你好，hello，world你好，hello，world</div>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/TweenMax.min.js"></script>
+		<script src="js/SplitTextPlugin.js"></script>
+		<script>
+		    var tl = new TimelineLite, 
+			    mySplitText = new SplitText("#box", {type:"words,chars"}), 
+			    chars = mySplitText.chars; //an array of all the divs that wrap each character
+			
+			TweenLite.set("#box", {perspective:400});
+			
+			tl.staggerFrom(chars, 0.8, {opacity:0, scale:0, y:80, rotationX:180, transformOrigin:"0% 50% -50",  ease:Back.easeOut}, 0.01, "+=0");
+			
+
+		</script>
+	</body>
+</html>

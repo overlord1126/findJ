@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			html{
+				font-size: 50px;
+			}
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 200px;
+				top: 200px;
+			}
+		</style>
+	</head>
+	<script src="js/TweenMax.min.js"></script>
+	<body>
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+//		 	TweenLite.to(box,1,{left:0})
+//		 	TweenLite.to(box,1,{scale:0})
+//		 	TweenLite.to(box,1,{borderRadius:50})
+
+//			TweenLite.from(box,1,{height:0})
+
+//			TweenLite.to(box,1,{height:"-=50px"})
+
+//			TweenLite.to(box,1,{top:400,ease: Bounce.easeOut})
+//			TweenLite.to(box,1,{top:400,ease: Elastic.easeOut})
+
+//			staggerFrom
+			TweenMax.staggerFrom(box,1,{height:50})
+
+//			1、Back 2、SlowMo 3、StppedEase 4、RoughEase 5、Bounce 6、Circ 7、Elastic 8、Expo 9、Sine
+
+		</script>
+	</body>
+</html>

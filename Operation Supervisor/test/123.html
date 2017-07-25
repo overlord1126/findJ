@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>加载</title>
+<style>
+body{ margin:0px; padding:0px; background:#dcd5ce;}
+.load{ width:1000px; height:800px; position:absolute; top:50%; left:50%; margin:-400px 0px 0px -500px; background:url(images/loadBg.png) no-repeat; text-align:center;}
+.load span{ display:inline-block; height:100%; vertical-align:middle;}
+.load img{ vertical-align:middle; }
+.penBox{ width:600px; height:400px; position:absolute; top:50%; left:50%; margin:-200px 0px 0px -295px;}
+.pen{ width:61px; height:62px; position:absolute; z-index:99;}
+.note{
+	width:60px; height:28px; border-radius:5px; 
+	background:#e15671; color:#FFF; text-align:center;
+	box-shadow:3px 3px 5px 0px rgba(218,206,191,0.5);
+	position:absolute; z-index:9;
+}
+.note:before{
+	content:''; width:0px; height:0px; 
+	border-width:5px; 
+	border-style:dashed dashed solid dashed; 
+	border-color:transparent transparent #e15671 transparent;
+	position:absolute; top:-10px; left:50%; margin-left:-5px;
+}
+.note span{ font-size:20px; line-height:28px;}
+.note em{ font-style:normal; font-size:14px;}
+#c{ position:absolute; top:50%; left:50%; margin:-200px 0px 0px -295px;}
+</style>
+</head>
+
+<body>
+
+
+<div class="load">
+	<div class="penBox"><img class="pen" id="pen" src="images/loadPen.png"><div class="note" id="note"><span>26</span><em>%</em></div></div>
+	<canvas id="c"></canvas>
+    <span>&nbsp;</span>
+    <img src="images/loadRoute.png">
+</div>
+
+<script>
+
+var loadAni = {
+	init:function(){
+		var _this = this;
+		_this.t = [];
+		for(var i=1;i<101;i++){
+			_this.t.push(i);
+		}
+		_this.lastPosition = [];
+		_this.pen = document.getElementById('pen');
+		_this.note = document.getElementById('note');
+		_this.c = document.getElementById('c');
+		_this.c.height = '400';
+		_this.c.width = '600';
+		_this.C1 = c.getContext('2d');
+		_this.C1.strokeStyle="#dd657c";
+		_this.position = [
+			[449,237],
+			[449,237,449,237,449,348,449,348],
+			[449,348,449,348,447,356,444,359],
+			[441,362,441,362,417,360,417,360],
+			[417,360,417,360,411,358,410,352],
+			[409,346,409,346,410,291,410,291],
+			[410,291,410,291,401,349,401,349],
+			[401,349,401,349,399,360,392,360],
+			[385,360,385,360,380,360,380,360],
+			[380,360,380,360,374,361,373,352]
+		];
+		_this.getlastPosition();
+	},
+	getlastPosition:function(){
+		var _this = this;
+		var i = 1;
+		var n = 1;
+		//var timer = setInterval(function(){start()},1);
+		start();
+		function start(){
+			var X = _this.getposition({position:_this.position[n],t:_this.t[i]/100})[0] + 4;
+			var Y = _this.getposition({position:_this.position[n],t:_this.t[i]/100})[1];
+			_this.lastPosition.push([X,Y]);
+			i+= _this.position[n][8] || 1;
+			if(i>100){n++;i=1;}
+			if(n >= _this.position.length){_this.drawLine();}
+			else{start();}
+			console.log(_this.lastPosition);
+		}
+	},
+	getposition:function(option){
+		var _this = this;
+		var position = option.position;
+		var t = option.t;
+		var Ix = position[0]*((1-t)*(1-t)) + position[2]*2*(1-t)*t + position[4]*(t*t);
+		var Iy = position[1]*((1-t)*(1-t)) + position[3]*2*(1-t)*t + position[5]*(t*t);
+		
+		var Jx = position[2]*((1-t)*(1-t)) + position[4]*2*(1-t)*t + position[6]*(t*t);
+		var Jy = position[3]*((1-t)*(1-t)) + position[5]*2*(1-t)*t + position[7]*(t*t);
+		
+		var Ex = Ix*(1-t) + Jx*t;
+		var Ey = Iy*(1-t) + Jy*t;
+		return [Ex,Ey];
+	},
+	drawLine:function(){
+		var _this = this;
+		var n = 0;
+		var time = 200;
+		var timer2 = null;
+		
+		_this.C1.beginPath();
+		_this.C1.moveTo(_this.position[0][0] + 4,this.position[0][1]);
+		
+		/*timer2 = setInterval(function(){
+			move();
+		},time/_this.lastPosition.length);*/
+		//console.log(_this.lastPosition.length);
+		move( 1000 );
+		setTimeout(function(){
+			move( _this.lastPosition.length );
+		},10);
+		function move( num ){
+			clearInterval(timer2);
+			timer2 = setInterval(function(){
+				_this.pen.style.left = _this.lastPosition[n][0] + 'px';
+				_this.pen.style.top = _this.lastPosition[n][1] - 62 + 'px';
+				_this.note.style.left = _this.lastPosition[n][0] - 30 + 'px';
+				_this.note.style.top = _this.lastPosition[n][1] + 15  + 'px';
+				_this.C1.lineTo(_this.lastPosition[n][0],_this.lastPosition[n][1]);
+				_this.C1.stroke();
+				_this.note.getElementsByTagName('span')[0].innerHTML = Math.floor((n/_this.lastPosition.length)*100);
+				n+=2;
+				if(n>=num){ clearInterval(timer2);}
+			},time/_this.lastPosition.length);
+			
+			
+			/*n++;
+			if(n>=_this.lastPosition.length){ clearInterval(timer2);}*/
+		}
+	}
+};
+loadAni.init();
+
+</script>
+</body>
+</html>
